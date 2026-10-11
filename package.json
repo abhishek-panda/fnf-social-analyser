@@ -1,0 +1,21 @@
+{
+  "name": "fnf-social-analyser",
+  "version": "1.0.0",
+  "description": "FNF Social Analyser — monorepo",
+  "private": true,
+  "workspaces": [
+    "feed-collector",
+    "image-search"
+  ],
+  "scripts": {
+    "feed-collector": "cd feed-collector && yarn dev",
+    "image-search": "cd image-search && yarn dev",
+    "embedding-service": "cd embedding-service && uvicorn main:app --host 0.0.0.0 --port 8000",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:backup": "bash scripts/backup-db.sh",
+    "db:restore": "bash scripts/restore-db.sh",
+    "backfill:embeddings": "npx ts-node --project feed-collector/tsconfig.json scripts/backfill-embeddings.ts"
+  },
+  "license": "UNLICENSED"
+}
